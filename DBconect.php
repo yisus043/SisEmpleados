@@ -1,9 +1,9 @@
 
 <?php
 $db_host="127.0.0.1"; //localhost server 
-$db_user="u995420991_sistemadigital";	//database username
-$db_password="U995420991_sistemadigital";	//database password   
-$db_name="u995420991_sistemadigital";	//database name
+$db_user="";	//database username
+$db_password="";	//database password   
+$db_name="";	//database name
 
 try
 {
