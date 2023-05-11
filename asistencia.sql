@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 11-05-2023 a las 05:20:42
+-- Tiempo de generación: 11-05-2023 a las 05:29:59
 -- Versión del servidor: 8.0.32
 -- Versión de PHP: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `asistencias`
+-- Base de datos: `areas`
 --
 
 -- --------------------------------------------------------
@@ -28,100 +28,53 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `areas` (
-  `id` bigint UNSIGNED NOT NULL,
-  `nombre_areas` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nombre_encargado` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` int NOT NULL,
+  `nombre_area` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `asistencias`
+-- Estructura de tabla para la tabla `asistencia`
 --
 
-CREATE TABLE `asistencias` (
-  `id` bigint UNSIGNED NOT NULL,
-  `id_empleados` bigint UNSIGNED DEFAULT NULL,
-  `ab` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `e` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `falta` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nr` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `d` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `r` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `asistencia` (
+  `id` int NOT NULL,
+  `empleado_id` int NOT NULL,
+  `abandono` varchar(45) DEFAULT NULL,
+  `enfermo` varchar(45) DEFAULT NULL,
+  `falto` varchar(45) DEFAULT NULL,
+  `no_r` varchar(45) DEFAULT NULL,
+  `permiso` varchar(45) DEFAULT NULL,
+  `retardo` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `empleados`
+-- Estructura de tabla para la tabla `empleado`
 --
 
-CREATE TABLE `empleados` (
-  `id` bigint UNSIGNED NOT NULL,
-  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `apellidos` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `correo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `curp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `adn` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ccb` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `rfc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ubicacion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ine` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nss` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `indentificacion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `id_areas` bigint UNSIGNED DEFAULT NULL,
-  `puesto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sueldo` double DEFAULT NULL,
-  `foto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `migrations`
---
-
-CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `migrations`
---
-
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(2, '2023_05_09_161843_roles', 1),
-(3, '2023_05_09_163046_areas', 1),
-(4, '2023_05_09_163433_usuarios', 1),
-(5, '2023_05_09_163446_empleados', 1),
-(6, '2023_05_09_163500_asistencia', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `personal_access_tokens`
---
-
-CREATE TABLE `personal_access_tokens` (
-  `id` bigint UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
-  `last_used_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `empleado` (
+  `id` int NOT NULL,
+  `nombre` varchar(45) DEFAULT NULL,
+  `apellidos` varchar(45) DEFAULT NULL,
+  `curp` varchar(45) DEFAULT NULL,
+  `act_naci` varchar(45) DEFAULT NULL,
+  `ccb` varchar(45) DEFAULT NULL,
+  `correo` varchar(45) DEFAULT NULL,
+  `rfc` varchar(45) DEFAULT NULL,
+  `ubicacion` varchar(45) DEFAULT NULL,
+  `ine` varchar(45) DEFAULT NULL,
+  `nss` varchar(45) DEFAULT NULL,
+  `identificador` varchar(45) DEFAULT NULL,
+  `telefono` varchar(45) DEFAULT NULL,
+  `areas_id` int NOT NULL,
+  `sueldo` int DEFAULT NULL,
+  `fecha_alta` varchar(45) DEFAULT NULL,
+  `foto` varchar(45) DEFAULT NULL,
+  `empleadocol` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -130,11 +83,9 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `roles` (
-  `id` bigint UNSIGNED NOT NULL,
-  `roll` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` int NOT NULL,
+  `roll` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -143,15 +94,13 @@ CREATE TABLE `roles` (
 --
 
 CREATE TABLE `usuarios` (
-  `id` bigint UNSIGNED NOT NULL,
-  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `id_roles` bigint UNSIGNED DEFAULT NULL,
-  `id_areas` bigint UNSIGNED DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` int NOT NULL,
+  `nombre` varchar(45) DEFAULT NULL,
+  `correo` varchar(45) DEFAULT NULL,
+  `contrasena` varchar(45) DEFAULT NULL,
+  `roles_id` int NOT NULL,
+  `areas_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Índices para tablas volcadas
@@ -164,30 +113,18 @@ ALTER TABLE `areas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `asistencias`
+-- Indices de la tabla `asistencia`
 --
-ALTER TABLE `asistencias`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `asistencia`
+  ADD PRIMARY KEY (`id`,`empleado_id`),
+  ADD KEY `fk_asistencia_empleado1_idx` (`empleado_id`);
 
 --
--- Indices de la tabla `empleados`
+-- Indices de la tabla `empleado`
 --
-ALTER TABLE `empleados`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `personal_access_tokens`
---
-ALTER TABLE `personal_access_tokens`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
-  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+ALTER TABLE `empleado`
+  ADD PRIMARY KEY (`id`,`areas_id`),
+  ADD KEY `fk_empleado_areas1_idx` (`areas_id`);
 
 --
 -- Indices de la tabla `roles`
@@ -199,53 +136,32 @@ ALTER TABLE `roles`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`,`roles_id`,`areas_id`),
+  ADD KEY `fk_usuarios_roles_idx` (`roles_id`),
+  ADD KEY `fk_usuarios_areas1_idx` (`areas_id`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- Restricciones para tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `areas`
+-- Filtros para la tabla `asistencia`
 --
-ALTER TABLE `areas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `asistencia`
+  ADD CONSTRAINT `fk_asistencia_empleado1` FOREIGN KEY (`empleado_id`) REFERENCES `empleado` (`id`);
 
 --
--- AUTO_INCREMENT de la tabla `asistencias`
+-- Filtros para la tabla `empleado`
 --
-ALTER TABLE `asistencias`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `empleado`
+  ADD CONSTRAINT `fk_empleado_areas1` FOREIGN KEY (`areas_id`) REFERENCES `areas` (`id`);
 
 --
--- AUTO_INCREMENT de la tabla `empleados`
---
-ALTER TABLE `empleados`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de la tabla `personal_access_tokens`
---
-ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `roles`
---
-ALTER TABLE `roles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
+-- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  ADD CONSTRAINT `fk_usuarios_areas1` FOREIGN KEY (`areas_id`) REFERENCES `areas` (`id`),
+  ADD CONSTRAINT `fk_usuarios_roles` FOREIGN KEY (`roles_id`) REFERENCES `roles` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
